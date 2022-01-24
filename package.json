@@ -7,13 +7,16 @@
     "packages/*"
   ],
   "scripts": {
+    "commit": "cz",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "release": "standard-version && git push --follow-tags",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^2.5.1",
+    "standard-version": "^9.3.2",
     "turbo": "latest"
   },
   "turbo": {
