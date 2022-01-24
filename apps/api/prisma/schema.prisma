@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Company {
+  id        String      @id @default(cuid())
+  name      String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  players   Character[]
+  playerId  String
+  attacks   War[]       @relation("ATTACKER")
+  defenses  War[]       @relation("DEFENDER")
+  wins      War[]
+}
+
+model Character {
+  id        String   @id @default(cuid())
+  pseudo    String
+  scores    Score[]
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+}
+
+model Score {
+  id          String    @id @default(cuid())
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId String
+  war         War       @relation(fields: [warId], references: [id])
+  warId       String
+  rank        Int
+  score       Int
+  kills       Int
+  deaths      Int
+  assists     Int
+  healing     Int
+  damage      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model War {
+  id         String   @id @default(cuid())
+  attacker   Company  @relation("ATTACKER", fields: [attackerId], references: [id])
+  attackerId String
+  defender   Company  @relation("DEFENDER", fields: [defenderId], references: [id])
+  defenderId String
+  scores     Score[]
+  winner     Company  @relation(fields: [winnerId], references: [id])
+  winnerId   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
