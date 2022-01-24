@@ -1,0 +1,21 @@
+type Company {
+  id: ID!
+  name: String!
+  # players: [Player!]!
+  createdAt: String!
+  updatedAt: String!
+  # attacks: [War!]!
+  # defenses: [War!]!
+  # wins: [War!]!
+}
+
+type Query {
+  companies: [Company!]!
+  company(id: ID!): Company
+}
+
+type Mutation {
+  createCompany(name: String!): Company
+  updateCompany(id: ID!, name: String!): Company
+  deleteCompany(id: ID!): Company
+}
