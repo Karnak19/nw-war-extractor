@@ -23,7 +23,6 @@ model Company {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   players   Character[]
-  playerId  String
   attacks   War[]       @relation("ATTACKER")
   defenses  War[]       @relation("DEFENDER")
   wins      War[]

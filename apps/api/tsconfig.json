@@ -14,5 +14,5 @@
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules"],
-  "extends": "../../packages/tsconfig/base.json"
+  "extends": "tsconfig/base.json"
 }
