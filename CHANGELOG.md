@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.2...v0.0.3) (2022-01-24)
+
+
+### Features
+
+* **company:** init company module with resolver ([2a49e84](https://github.com/Karnak19/nw-war-extractor/commit/2a49e842a1d54a62278a7c82251934f9c8678878))
+
+
+### Bug Fixes
+
+* **prisma:** remove useless playerId from company model ([9904204](https://github.com/Karnak19/nw-war-extractor/commit/9904204d3d249303da1b57386fadb61a4367b7a5))
+
 ### 0.0.2 (2022-01-24)
 
 
