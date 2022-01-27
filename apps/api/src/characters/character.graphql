@@ -1,0 +1,5 @@
+type Character {
+  id: ID!
+  pseudo: String!
+  scores: [Score!]!
+}
