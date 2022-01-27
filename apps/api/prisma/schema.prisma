@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,14 +15,14 @@ model User {
 }
 
 model Company {
-  id        String      @id @default(cuid())
-  name      String
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  players   Character[]
-  attacks   War[]       @relation("ATTACKER")
-  defenses  War[]       @relation("DEFENDER")
-  wins      War[]
+  id         String      @id @default(cuid())
+  name       String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  characters Character[]
+  attacks    War[]       @relation("ATTACKER")
+  defenses   War[]       @relation("DEFENDER")
+  wins       War[]
 }
 
 model Character {
