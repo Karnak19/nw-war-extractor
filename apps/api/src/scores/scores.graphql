@@ -1,0 +1,33 @@
+input CreateScoreInput {
+  characterId: ID!
+  rank: Int!
+  score: Int!
+  kills: Int!
+  deaths: Int!
+  assists: Int!
+  healing: Int!
+  damage: Int!
+}
+
+type Score {
+  id: ID!
+  rank: Int!
+  score: Int!
+  kills: Int!
+  deaths: Int!
+  assists: Int!
+  healing: Int!
+  damage: Int!
+  character: Character!
+  # war: War!
+}
+
+type Query {
+  scores: [Score!]!
+  score(id: Int!): Score
+}
+
+type Mutation {
+  createScore(input: CreateScoreInput!): Score!
+  removeScore(id: Int!): Score
+}
