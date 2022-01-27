@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.3...v0.0.4) (2022-01-27)
+
+
+### Features
+
+* **auth:** init auth modules ([8275488](https://github.com/Karnak19/nw-war-extractor/commit/827548818c950172d3b4b34530f40602a9a7574f))
+* **characters:** init characters module ([63507b6](https://github.com/Karnak19/nw-war-extractor/commit/63507b6ead9a1b3a0ef9c32b32570f51644385c4))
+* **company:** update company resource ([3204dcd](https://github.com/Karnak19/nw-war-extractor/commit/3204dcd7493f35bf00b34ea15d28c42bf7496e51))
+* **scores:** init scores module ([d6b1bcf](https://github.com/Karnak19/nw-war-extractor/commit/d6b1bcf2ac1eb8005c942ec3ee2e4a1f1f16d629))
+
 ### [0.0.3](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.2...v0.0.3) (2022-01-24)
 
 
