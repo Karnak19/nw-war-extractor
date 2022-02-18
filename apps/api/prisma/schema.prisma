@@ -27,7 +27,7 @@ model Company {
 
 model Character {
   id        String   @id @default(cuid())
-  pseudo    String
+  pseudo    String   @unique
   scores    Score[]
   company   Company? @relation(fields: [companyId], references: [id])
   companyId String?

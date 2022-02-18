@@ -10,6 +10,14 @@ query Company($id: ID!) {
     name
     characters {
       id
+    }
+  }
+}
+
+query CompanyMembers($id: ID!) {
+  company(id: $id) {
+    characters {
+      id
       pseudo
     }
   }

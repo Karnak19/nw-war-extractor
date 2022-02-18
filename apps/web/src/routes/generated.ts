@@ -1,15 +1,11 @@
 import { GraphQLClient } from 'graphql-request';
-import { RequestInit } from 'graphql-request/dist/types.dom';
-import { useQuery, UseQueryOptions } from 'react-query';
+import * as Dom from 'graphql-request/dist/types.dom';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-
-function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables, headers?: RequestInit['headers']) {
-  return async (): Promise<TData> => client.request<TData, TVariables>(query, variables, headers);
-}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -130,7 +126,7 @@ export type CompanyMembersQueryVariables = Exact<{
 export type CompanyMembersQuery = { __typename?: 'Query', company?: { __typename?: 'Company', characters: Array<{ __typename?: 'Character', id: string, pseudo: string }> } | null };
 
 
-export const CompaniesDocument = `
+export const CompaniesDocument = gql`
     query companies {
   companies {
     id
@@ -138,21 +134,7 @@ export const CompaniesDocument = `
   }
 }
     `;
-export const useCompaniesQuery = <
-      TData = CompaniesQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient,
-      variables?: CompaniesQueryVariables,
-      options?: UseQueryOptions<CompaniesQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) =>
-    useQuery<CompaniesQuery, TError, TData>(
-      variables === undefined ? ['companies'] : ['companies', variables],
-      fetcher<CompaniesQuery, CompaniesQueryVariables>(client, CompaniesDocument, variables, headers),
-      options
-    );
-export const CompanyDocument = `
+export const CompanyDocument = gql`
     query Company($id: ID!) {
   company(id: $id) {
     name
@@ -162,21 +144,7 @@ export const CompanyDocument = `
   }
 }
     `;
-export const useCompanyQuery = <
-      TData = CompanyQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient,
-      variables: CompanyQueryVariables,
-      options?: UseQueryOptions<CompanyQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) =>
-    useQuery<CompanyQuery, TError, TData>(
-      ['Company', variables],
-      fetcher<CompanyQuery, CompanyQueryVariables>(client, CompanyDocument, variables, headers),
-      options
-    );
-export const CompanyMembersDocument = `
+export const CompanyMembersDocument = gql`
     query CompanyMembers($id: ID!) {
   company(id: $id) {
     characters {
@@ -186,17 +154,23 @@ export const CompanyMembersDocument = `
   }
 }
     `;
-export const useCompanyMembersQuery = <
-      TData = CompanyMembersQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient,
-      variables: CompanyMembersQueryVariables,
-      options?: UseQueryOptions<CompanyMembersQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) =>
-    useQuery<CompanyMembersQuery, TError, TData>(
-      ['CompanyMembers', variables],
-      fetcher<CompanyMembersQuery, CompanyMembersQueryVariables>(client, CompanyMembersDocument, variables, headers),
-      options
-    );
+
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
+
+
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+
+export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+  return {
+    companies(variables?: CompaniesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CompaniesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompaniesQuery>(CompaniesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'companies');
+    },
+    Company(variables: CompanyQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CompanyQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompanyQuery>(CompanyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Company');
+    },
+    CompanyMembers(variables: CompanyMembersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CompanyMembersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompanyMembersQuery>(CompanyMembersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CompanyMembers');
+    }
+  };
+}
+export type Sdk = ReturnType<typeof getSdk>;

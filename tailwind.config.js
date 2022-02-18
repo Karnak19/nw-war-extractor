@@ -1,7 +1,11 @@
 module.exports = {
-  content: ['**/*.tsx', '**/*.html'],
+  content: ['./src/**/*.tsx', './index.html'],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['emerald', 'forest'],
+    darkTheme: 'forest',
+  },
 };

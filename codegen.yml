@@ -11,3 +11,8 @@ generates:
       - typescript-react-query
     config:
       fetcher: graphql-request
+  ./apps/web/src/routes/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
