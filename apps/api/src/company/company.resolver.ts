@@ -37,4 +37,19 @@ export class CompanyResolver {
   async characters(@Parent() company: Company) {
     return this.companyService.resolveCharacters(company.id);
   }
+
+  @ResolveField()
+  async attacks(@Parent() company: Company) {
+    return this.companyService.resolveAttacks(company.id);
+  }
+
+  @ResolveField()
+  async defenses(@Parent() company: Company) {
+    return this.companyService.resolveDefenses(company.id);
+  }
+
+  @ResolveField()
+  async wins(@Parent() company: Company) {
+    return this.companyService.resolveWins(company.id);
+  }
 }

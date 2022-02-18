@@ -28,6 +28,9 @@ export interface Company {
     id: string;
     name: string;
     characters: Character[];
+    attacks: War[];
+    defenses: War[];
+    wins: War[];
 }
 
 export interface IQuery {
@@ -55,6 +58,14 @@ export interface Score {
     healing: number;
     damage: number;
     character: Character;
+}
+
+export interface War {
+    id: string;
+    attacker: Company;
+    defender: Company;
+    scores: Score[];
+    winner: Company;
 }
 
 type Nullable<T> = T | null;

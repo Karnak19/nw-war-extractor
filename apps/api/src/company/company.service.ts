@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Character, Company, Prisma } from '@prisma/client';
+import { Character, Company, Prisma, War } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 interface Params {
@@ -40,5 +40,21 @@ export class CompanyService {
     return this.prisma.company
       .findUnique({ where: { id: companyId } })
       .characters();
+  }
+
+  async resolveAttacks(companyId: Company['id']): Promise<War[]> {
+    return this.prisma.company
+      .findUnique({ where: { id: companyId } })
+      .attacks();
+  }
+
+  async resolveDefenses(companyId: Company['id']): Promise<War[]> {
+    return this.prisma.company
+      .findUnique({ where: { id: companyId } })
+      .defenses();
+  }
+
+  async resolveWins(companyId: Company['id']): Promise<War[]> {
+    return this.prisma.company.findUnique({ where: { id: companyId } }).wins();
   }
 }

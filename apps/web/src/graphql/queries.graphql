@@ -11,6 +11,12 @@ query Company($id: ID!) {
     characters {
       id
     }
+    attacks {
+      id
+    }
+    defenses {
+      id
+    }
   }
 }
 

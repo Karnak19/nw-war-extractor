@@ -2,9 +2,9 @@ type Company {
   id: ID!
   name: String!
   characters: [Character!]!
-  # attacks: [War!]!
-  # defenses: [War!]!
-  # wins: [War!]!
+  attacks: [War!]!
+  defenses: [War!]!
+  wins: [War!]!
 }
 
 type Query {

@@ -20,7 +20,10 @@ function Company() {
       <div className="flex w-full justify-center">
         <Stats
           playerCount={data?.company?.characters.length || 0}
-          warCount={24}
+          warCount={
+            (data?.company?.attacks.length || 0) +
+            (data?.company?.defenses.length || 0)
+          }
         />
       </div>
       <div></div>

@@ -7,6 +7,7 @@ import { CompanyModule } from './company/company.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { CharactersModule } from './characters/characters.module';
 import { ScoresModule } from './scores/scores.module';
+import { WarModule } from './war/war.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ScoresModule } from './scores/scores.module';
     PrismaModule,
     CharactersModule,
     ScoresModule,
+    WarModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,7 @@
+type War {
+  id: ID!
+  attacker: Company!
+  defender: Company!
+  scores: [Score!]!
+  winner: Company!
+}

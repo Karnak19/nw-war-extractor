@@ -24,9 +24,12 @@ export type Character = {
 
 export type Company = {
   __typename?: 'Company';
+  attacks: Array<War>;
   characters: Array<Character>;
+  defenses: Array<War>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  wins: Array<War>;
 };
 
 export type CreateScoreInput = {
@@ -106,6 +109,15 @@ export type Score = {
   score: Scalars['Int'];
 };
 
+export type War = {
+  __typename?: 'War';
+  attacker: Company;
+  defender: Company;
+  id: Scalars['ID'];
+  scores: Array<Score>;
+  winner: Company;
+};
+
 export type CompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -116,7 +128,7 @@ export type CompanyQueryVariables = Exact<{
 }>;
 
 
-export type CompanyQuery = { __typename?: 'Query', company?: { __typename?: 'Company', name: string, characters: Array<{ __typename?: 'Character', id: string }> } | null };
+export type CompanyQuery = { __typename?: 'Query', company?: { __typename?: 'Company', name: string, characters: Array<{ __typename?: 'Character', id: string }>, attacks: Array<{ __typename?: 'War', id: string }>, defenses: Array<{ __typename?: 'War', id: string }> } | null };
 
 export type CompanyMembersQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -139,6 +151,12 @@ export const CompanyDocument = gql`
   company(id: $id) {
     name
     characters {
+      id
+    }
+    attacks {
+      id
+    }
+    defenses {
       id
     }
   }
