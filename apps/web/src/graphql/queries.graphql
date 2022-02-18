@@ -1,0 +1,16 @@
+query companies {
+  companies {
+    id
+    name
+  }
+}
+
+query Company($id: ID!) {
+  company(id: $id) {
+    name
+    characters {
+      id
+      pseudo
+    }
+  }
+}
