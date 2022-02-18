@@ -1,0 +1,13 @@
+overwrite: true
+schema:
+  - ./apps/api/src/**/*.graphql
+documents:
+  - ./apps/web/src/graphql/*.graphql
+generates:
+  ./apps/web/src/graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+    config:
+      fetcher: graphql-request

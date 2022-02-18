@@ -19,7 +19,7 @@ export class CompanyResolver {
   }
 
   @Query()
-  async company(id: string) {
+  async company(@Args('id') id: string) {
     return this.companyService.getOne({ id });
   }
 

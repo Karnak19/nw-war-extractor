@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "commit": "cz",
+    "codegen": "graphql-codegen -r --config codegen.yml",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "release": "standard-version && git push --follow-tags",
@@ -15,14 +16,24 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.7",
+    "@graphql-codegen/typescript-operations": "^2.3.2",
+    "@graphql-codegen/typescript-react-query": "^3.5.5",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "autoprefixer": "^10.4.2",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
+    "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.2",
+    "react-location-devtools": "^3.3.3",
     "standard-version": "^9.3.2",
+    "tailwindcss": "^3.0.17",
     "turbo": "latest"
   },
   "turbo": {
@@ -47,5 +58,8 @@
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "react-location": "^3.3.3"
   }
 }
