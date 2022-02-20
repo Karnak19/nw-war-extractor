@@ -21,9 +21,11 @@ export type Scalars = {
 
 export type Character = {
   __typename?: 'Character';
+  company: Company;
   id: Scalars['ID'];
   pseudo: Scalars['String'];
   scores: Array<Score>;
+  war: War;
 };
 
 export type Company = {
@@ -84,10 +86,16 @@ export type MutationUpdateCompanyArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  character: Character;
   companies: Array<Company>;
   company?: Maybe<Company>;
   score?: Maybe<Score>;
   scores: Array<Score>;
+};
+
+
+export type QueryCharacterArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -104,6 +112,7 @@ export type Score = {
   __typename?: 'Score';
   assists: Scalars['Int'];
   character: Character;
+  createdAt: Scalars['String'];
   damage: Scalars['Int'];
   deaths: Scalars['Int'];
   healing: Scalars['Int'];
@@ -111,6 +120,7 @@ export type Score = {
   kills: Scalars['Int'];
   rank: Scalars['Int'];
   score: Scalars['Int'];
+  war: War;
 };
 
 export type War = {
@@ -140,6 +150,13 @@ export type CompanyMembersQueryVariables = Exact<{
 
 
 export type CompanyMembersQuery = { __typename?: 'Query', company?: { __typename?: 'Company', characters: Array<{ __typename?: 'Character', id: string, pseudo: string }> } | null };
+
+export type CharacterQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', id: string, pseudo: string, company: { __typename?: 'Company', id: string, name: string }, scores: Array<{ __typename?: 'Score', id: string, kills: number, deaths: number, assists: number, damage: number, healing: number, createdAt: string, war: { __typename?: 'War', attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string, name: string } } }> } };
 
 
 export const CompaniesDocument = `
@@ -216,5 +233,54 @@ export const useCompanyMembersQuery = <
     useQuery<CompanyMembersQuery, TError, TData>(
       ['CompanyMembers', variables],
       fetcher<CompanyMembersQuery, CompanyMembersQueryVariables>(client, CompanyMembersDocument, variables, headers),
+      options
+    );
+export const CharacterDocument = `
+    query Character($id: ID!) {
+  character(id: $id) {
+    id
+    pseudo
+    company {
+      id
+      name
+    }
+    scores {
+      id
+      kills
+      deaths
+      assists
+      damage
+      healing
+      war {
+        attacker {
+          id
+          name
+        }
+        defender {
+          id
+          name
+        }
+        winner {
+          id
+          name
+        }
+      }
+      createdAt
+    }
+  }
+}
+    `;
+export const useCharacterQuery = <
+      TData = CharacterQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: CharacterQueryVariables,
+      options?: UseQueryOptions<CharacterQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<CharacterQuery, TError, TData>(
+      ['Character', variables],
+      fetcher<CharacterQuery, CharacterQueryVariables>(client, CharacterDocument, variables, headers),
       options
     );

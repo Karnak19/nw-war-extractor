@@ -28,3 +28,37 @@ query CompanyMembers($id: ID!) {
     }
   }
 }
+
+query Character($id: ID!) {
+  character(id: $id) {
+    id
+    pseudo
+    company {
+      id
+      name
+    }
+    scores {
+      id
+      kills
+      deaths
+      assists
+      damage
+      healing
+      war {
+        attacker {
+          id
+          name
+        }
+        defender {
+          id
+          name
+        }
+        winner {
+          id
+          name
+        }
+      }
+      createdAt
+    }
+  }
+}

@@ -13,7 +13,7 @@ function Stats({
   playerCount: number;
 }) {
   return (
-    <div className="stats shadow">
+    <div className="stats stats-vertical shadow lg:stats-horizontal">
       <div className="stat">
         <div className="stat-title">Members</div>
         <div className="stat-value text-primary">{playerCount}</div>

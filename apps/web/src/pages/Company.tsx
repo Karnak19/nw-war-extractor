@@ -13,7 +13,7 @@ function Company() {
   if (error) return <div>Error!</div>;
 
   return (
-    <div className="container mx-auto mt-3 flex flex-col gap-5">
+    <>
       <div className="flex justify-center">
         <h1 className="text-5xl font-bold">{data?.company?.name}</h1>
       </div>
@@ -27,7 +27,7 @@ function Company() {
         />
       </div>
       <div></div>
-    </div>
+    </>
   );
 }
 

@@ -8,6 +8,8 @@ import {
 import Layout from './components/Layout';
 import Companies from './pages/Companies';
 import Company from './pages/Company';
+import CompanyMember from './pages/CompanyMember';
+import CompanyMembers from './pages/CompanyMembers';
 import Home from './pages/Home';
 
 const location = new ReactLocation();
@@ -26,7 +28,25 @@ export const routes: Route[] = [
       },
       {
         path: ':id',
-        element: <Company />,
+        children: [
+          {
+            path: '/',
+            element: <Company />,
+          },
+          {
+            path: 'members',
+            children: [
+              {
+                path: '/',
+                element: <CompanyMembers />,
+              },
+              {
+                path: ':id',
+                element: <CompanyMember />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
