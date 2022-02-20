@@ -1,10 +1,15 @@
-import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { War } from '@prisma/client';
 import { WarService } from './war.service';
 
 @Resolver('War')
 export class WarResolver {
   constructor(private readonly warService: WarService) {}
+
+  @Query()
+  async war(@Args('id') id: string) {
+    return this.warService.getOne({ id });
+  }
 
   @ResolveField()
   async attacker(@Parent() war: War) {

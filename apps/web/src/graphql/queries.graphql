@@ -62,3 +62,33 @@ query Character($id: ID!) {
     }
   }
 }
+
+query CompanyWars($id: ID!) {
+  companyWars(id: $id) {
+    id
+    createdAt
+    attacker {
+      id
+      name
+    }
+    defender {
+      id
+      name
+    }
+    winner {
+      id
+    }
+    scores {
+      damage
+      healing
+      character {
+        company {
+          id
+        }
+      }
+    }
+  }
+  company(id: $id) {
+    name
+  }
+}

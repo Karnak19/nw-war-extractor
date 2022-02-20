@@ -30,8 +30,10 @@ export interface IQuery {
     character(id: string): Character | Promise<Character>;
     companies(): Company[] | Promise<Company[]>;
     company(id: string): Nullable<Company> | Promise<Nullable<Company>>;
+    companyWars(id: string): War[] | Promise<War[]>;
     scores(): Score[] | Promise<Score[]>;
     score(id: number): Nullable<Score> | Promise<Nullable<Score>>;
+    war(id: string): War | Promise<War>;
 }
 
 export interface Company {
@@ -71,6 +73,7 @@ export interface War {
     defender: Company;
     scores: Score[];
     winner: Company;
+    createdAt: string;
 }
 
 type Nullable<T> = T | null;

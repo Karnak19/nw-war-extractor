@@ -4,4 +4,9 @@ type War {
   defender: Company!
   scores: [Score!]!
   winner: Company!
+  createdAt: String!
+}
+
+type Query {
+  war(id: ID!): War!
 }

@@ -10,6 +10,7 @@ import Companies from './pages/Companies';
 import Company from './pages/Company';
 import CompanyMember from './pages/CompanyMember';
 import CompanyMembers from './pages/CompanyMembers';
+import CompanyWars from './pages/CompanyWars';
 import Home from './pages/Home';
 
 const location = new ReactLocation();
@@ -43,6 +44,19 @@ export const routes: Route[] = [
               {
                 path: ':id',
                 element: <CompanyMember />,
+              },
+            ],
+          },
+          {
+            path: 'wars',
+            children: [
+              {
+                path: '/',
+                element: <CompanyWars />,
+              },
+              {
+                path: ':id',
+                element: <CompanyWars />,
               },
             ],
           },

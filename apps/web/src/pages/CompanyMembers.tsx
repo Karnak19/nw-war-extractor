@@ -3,15 +3,9 @@ import { client, useCompanyMembersQuery } from '../graphql';
 
 function CompanyMembers({}: {}) {
   const { params } = useMatch();
-  const { data, isLoading, error } = useCompanyMembersQuery(
-    client,
-    {
-      id: params.id,
-    },
-    {
-      staleTime: 60,
-    },
-  );
+  const { data, isLoading, error } = useCompanyMembersQuery(client, {
+    id: params.id,
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;

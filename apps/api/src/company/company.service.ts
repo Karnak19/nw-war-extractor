@@ -36,6 +36,21 @@ export class CompanyService {
     return this.prisma.company.delete({ where });
   }
 
+  async getWars(companyId: Company['id']): Promise<War[]> {
+    return this.prisma.war.findMany({
+      where: {
+        OR: [
+          {
+            attackerId: companyId,
+          },
+          {
+            defenderId: companyId,
+          },
+        ],
+      },
+    });
+  }
+
   async resolveCharacters(companyId: Company['id']): Promise<Character[]> {
     return this.prisma.company
       .findUnique({ where: { id: companyId } })

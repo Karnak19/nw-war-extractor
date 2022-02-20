@@ -85,8 +85,10 @@ export type Query = {
   character: Character;
   companies: Array<Company>;
   company?: Maybe<Company>;
+  companyWars: Array<War>;
   score?: Maybe<Score>;
   scores: Array<Score>;
+  war: War;
 };
 
 
@@ -100,8 +102,18 @@ export type QueryCompanyArgs = {
 };
 
 
+export type QueryCompanyWarsArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type QueryScoreArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryWarArgs = {
+  id: Scalars['ID'];
 };
 
 export type Score = {
@@ -122,6 +134,7 @@ export type Score = {
 export type War = {
   __typename?: 'War';
   attacker: Company;
+  createdAt: Scalars['String'];
   defender: Company;
   id: Scalars['ID'];
   scores: Array<Score>;
@@ -153,6 +166,13 @@ export type CharacterQueryVariables = Exact<{
 
 
 export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', id: string, pseudo: string, company: { __typename?: 'Company', id: string, name: string }, scores: Array<{ __typename?: 'Score', id: string, kills: number, deaths: number, assists: number, damage: number, healing: number, createdAt: string, war: { __typename?: 'War', attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string, name: string } } }> } };
+
+export type CompanyWarsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type CompanyWarsQuery = { __typename?: 'Query', companyWars: Array<{ __typename?: 'War', id: string, createdAt: string, attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string }, scores: Array<{ __typename?: 'Score', damage: number, healing: number, character: { __typename?: 'Character', company: { __typename?: 'Company', id: string } } }> }>, company?: { __typename?: 'Company', name: string } | null };
 
 
 export const CompaniesDocument = gql`
@@ -224,6 +244,37 @@ export const CharacterDocument = gql`
   }
 }
     `;
+export const CompanyWarsDocument = gql`
+    query CompanyWars($id: ID!) {
+  companyWars(id: $id) {
+    id
+    createdAt
+    attacker {
+      id
+      name
+    }
+    defender {
+      id
+      name
+    }
+    winner {
+      id
+    }
+    scores {
+      damage
+      healing
+      character {
+        company {
+          id
+        }
+      }
+    }
+  }
+  company(id: $id) {
+    name
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -243,6 +294,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Character(variables: CharacterQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CharacterQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CharacterQuery>(CharacterDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Character');
+    },
+    CompanyWars(variables: CompanyWarsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CompanyWarsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompanyWarsQuery>(CompanyWarsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CompanyWars');
     }
   };
 }

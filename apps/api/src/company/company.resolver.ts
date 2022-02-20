@@ -23,6 +23,11 @@ export class CompanyResolver {
     return this.companyService.getOne({ id });
   }
 
+  @Query()
+  async companyWars(@Args('id') id: string) {
+    return this.companyService.getWars(id);
+  }
+
   @Mutation()
   async createCompany(@Args('name') name: string) {
     return this.companyService.create({ name });
