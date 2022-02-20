@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.4...v0.0.5) (2022-02-20)
+
+
+### Features
+
+* **back:** update characters and scores schema/resolver ([f7933d5](https://github.com/Karnak19/nw-war-extractor/commit/f7933d509ef782d9b2dbec77647a54b1fdca6a7a))
+* **codegen:** add graphql codegen ([e029fa6](https://github.com/Karnak19/nw-war-extractor/commit/e029fa60be9e26ad279ba7789195e7f7f3888677))
+* **front:** create company pages ([b7331d5](https://github.com/Karnak19/nw-war-extractor/commit/b7331d5cc3958bc855b43675ef11f9954b62d859))
+* **front:** start company page ([3f95ffd](https://github.com/Karnak19/nw-war-extractor/commit/3f95ffd3c3c2dec1d4ebf50e07bb95ea501db85b))
+* **war:** resolve fields in war service ([1545ccc](https://github.com/Karnak19/nw-war-extractor/commit/1545ccc7386d18425b3ec9050590ceea409c54e7))
+* **web:** init web ([32ee182](https://github.com/Karnak19/nw-war-extractor/commit/32ee182f1df3de202f4c2e31564d642ac97ad4b6))
+
 ### [0.0.4](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.3...v0.0.4) (2022-01-27)
 
 
