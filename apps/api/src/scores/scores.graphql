@@ -19,7 +19,8 @@ type Score {
   healing: Int!
   damage: Int!
   character: Character!
-  # war: War!
+  war: War!
+  createdAt: String!
 }
 
 type Query {

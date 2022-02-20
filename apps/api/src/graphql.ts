@@ -22,6 +22,16 @@ export interface Character {
     id: string;
     pseudo: string;
     scores: Score[];
+    war: War;
+    company: Company;
+}
+
+export interface IQuery {
+    character(id: string): Character | Promise<Character>;
+    companies(): Company[] | Promise<Company[]>;
+    company(id: string): Nullable<Company> | Promise<Nullable<Company>>;
+    scores(): Score[] | Promise<Score[]>;
+    score(id: number): Nullable<Score> | Promise<Nullable<Score>>;
 }
 
 export interface Company {
@@ -31,13 +41,6 @@ export interface Company {
     attacks: War[];
     defenses: War[];
     wins: War[];
-}
-
-export interface IQuery {
-    companies(): Company[] | Promise<Company[]>;
-    company(id: string): Nullable<Company> | Promise<Nullable<Company>>;
-    scores(): Score[] | Promise<Score[]>;
-    score(id: number): Nullable<Score> | Promise<Nullable<Score>>;
 }
 
 export interface IMutation {
@@ -58,6 +61,8 @@ export interface Score {
     healing: number;
     damage: number;
     character: Character;
+    war: War;
+    createdAt: string;
 }
 
 export interface War {

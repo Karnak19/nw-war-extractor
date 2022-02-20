@@ -32,4 +32,9 @@ export class ScoresResolver {
   async character(@Parent() score: Score) {
     return this.scoresService.resolveCharacter(score.id);
   }
+
+  @ResolveField()
+  async war(@Parent() score: Score) {
+    return this.scoresService.resolveWar(score.id);
+  }
 }

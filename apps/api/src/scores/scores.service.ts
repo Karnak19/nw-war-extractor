@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Character, Prisma, Score } from '@prisma/client';
+import { Character, Prisma, Score, War } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 interface Params {
@@ -38,5 +38,9 @@ export class ScoresService {
 
   async resolveCharacter(scoreId: Score['id']): Promise<Character | null> {
     return this.prisma.score.findUnique({ where: { id: scoreId } }).character();
+  }
+
+  async resolveWar(scoreId: Score['id']): Promise<War | null> {
+    return this.prisma.score.findUnique({ where: { id: scoreId } }).war();
   }
 }

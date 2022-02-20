@@ -2,4 +2,10 @@ type Character {
   id: ID!
   pseudo: String!
   scores: [Score!]!
+  war: War!
+  company: Company!
+}
+
+type Query {
+  character(id: ID!): Character!
 }
