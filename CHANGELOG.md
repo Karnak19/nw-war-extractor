@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.5...v0.0.6) (2022-02-21)
+
+
+### Features
+
+* **company:** add company wars recap ([a817bdb](https://github.com/Karnak19/nw-war-extractor/commit/a817bdb48f7aa43666873590e7667ff7eb0ffa7f))
+* **war details:** add war details page and routing between pages ([4686836](https://github.com/Karnak19/nw-war-extractor/commit/4686836156d233ee63edc6dcb399aec4ec0bccdd))
+
 ### [0.0.5](https://github.com/Karnak19/nw-war-extractor/compare/v0.0.4...v0.0.5) (2022-02-20)
 
 
