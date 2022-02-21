@@ -10,6 +10,7 @@ import Companies from './pages/Companies';
 import Company from './pages/Company';
 import CompanyMember from './pages/CompanyMember';
 import CompanyMembers from './pages/CompanyMembers';
+import CompanyWarDetails from './pages/CompanyWarDetails';
 import CompanyWars from './pages/CompanyWars';
 import Home from './pages/Home';
 
@@ -56,7 +57,7 @@ export const routes: Route[] = [
               },
               {
                 path: ':id',
-                element: <CompanyWars />,
+                element: <CompanyWarDetails />,
               },
             ],
           },

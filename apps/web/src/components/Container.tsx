@@ -1,11 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import {
-  Link,
-  useLocation,
-  useMatch,
-  useMatchRoute,
-  useRouter,
-} from 'react-location';
+import { Link, useLocation } from 'react-location';
 
 function Container({ children }: PropsWithChildren<{}>) {
   const {

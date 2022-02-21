@@ -169,7 +169,7 @@ export type CharacterQueryVariables = Exact<{
 }>;
 
 
-export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', id: string, pseudo: string, company: { __typename?: 'Company', id: string, name: string }, scores: Array<{ __typename?: 'Score', id: string, kills: number, deaths: number, assists: number, damage: number, healing: number, createdAt: string, war: { __typename?: 'War', attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string, name: string } } }> } };
+export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', id: string, pseudo: string, company: { __typename?: 'Company', id: string, name: string }, scores: Array<{ __typename?: 'Score', id: string, kills: number, deaths: number, assists: number, damage: number, healing: number, createdAt: string, war: { __typename?: 'War', id: string, attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string, name: string } } }> } };
 
 export type CompanyWarsQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -177,6 +177,13 @@ export type CompanyWarsQueryVariables = Exact<{
 
 
 export type CompanyWarsQuery = { __typename?: 'Query', companyWars: Array<{ __typename?: 'War', id: string, createdAt: string, attacker: { __typename?: 'Company', id: string, name: string }, defender: { __typename?: 'Company', id: string, name: string }, winner: { __typename?: 'Company', id: string }, scores: Array<{ __typename?: 'Score', damage: number, healing: number, character: { __typename?: 'Character', company: { __typename?: 'Company', id: string } } }> }>, company?: { __typename?: 'Company', name: string } | null };
+
+export type WarDetailsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type WarDetailsQuery = { __typename?: 'Query', war: { __typename?: 'War', scores: Array<{ __typename?: 'Score', rank: number, score: number, kills: number, deaths: number, assists: number, damage: number, healing: number, character: { __typename?: 'Character', id: string, pseudo: string } }> } };
 
 
 export const CompaniesDocument = `
@@ -272,6 +279,7 @@ export const CharacterDocument = `
       damage
       healing
       war {
+        id
         attacker {
           id
           name
@@ -347,5 +355,38 @@ export const useCompanyWarsQuery = <
     useQuery<CompanyWarsQuery, TError, TData>(
       ['CompanyWars', variables],
       fetcher<CompanyWarsQuery, CompanyWarsQueryVariables>(client, CompanyWarsDocument, variables, headers),
+      options
+    );
+export const WarDetailsDocument = `
+    query WarDetails($id: ID!) {
+  war(id: $id) {
+    scores {
+      rank
+      character {
+        id
+        pseudo
+      }
+      score
+      kills
+      deaths
+      assists
+      damage
+      healing
+    }
+  }
+}
+    `;
+export const useWarDetailsQuery = <
+      TData = WarDetailsQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: WarDetailsQueryVariables,
+      options?: UseQueryOptions<WarDetailsQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<WarDetailsQuery, TError, TData>(
+      ['WarDetails', variables],
+      fetcher<WarDetailsQuery, WarDetailsQueryVariables>(client, WarDetailsDocument, variables, headers),
       options
     );

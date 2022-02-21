@@ -45,6 +45,7 @@ query Character($id: ID!) {
       damage
       healing
       war {
+        id
         attacker {
           id
           name
@@ -90,5 +91,23 @@ query CompanyWars($id: ID!) {
   }
   company(id: $id) {
     name
+  }
+}
+
+query WarDetails($id: ID!) {
+  war(id: $id) {
+    scores {
+      rank
+      character {
+        id
+        pseudo
+      }
+      score
+      kills
+      deaths
+      assists
+      damage
+      healing
+    }
   }
 }
