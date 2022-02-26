@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useMatch, useNavigate } from 'react-location';
+import Spinner from '../components/Spinner';
 import { client, useWarDetailsQuery, WarDetailsQuery } from '../graphql';
 
 interface IProps {}
@@ -41,7 +42,7 @@ function CompanyWarDetails({}: IProps) {
     'healing',
   ];
 
-  if (isLoading) return <div>Loading....</div>;
+  if (isLoading) return <Spinner />;
 
   if (error) return <div>Error !</div>;
 

@@ -1,5 +1,6 @@
 import { useMatch } from 'react-location';
 import WarStat from '../components/Character/WarStat';
+import Spinner from '../components/Spinner';
 import { client, useCharacterQuery } from '../graphql';
 
 function CompanyMember({}: {}) {
@@ -9,7 +10,7 @@ function CompanyMember({}: {}) {
     id: params.id,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
   if (error) return <div>Error!</div>;
 
   return (

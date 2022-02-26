@@ -6,6 +6,7 @@ import { CompanyWarsQuery } from '../../graphql';
 type IProps = CompanyWarsQuery['companyWars'][number] & {
   totalDmg: number;
   totalHealing: number;
+  className?: string;
 };
 
 function War({
@@ -15,6 +16,7 @@ function War({
   winner,
   defender,
   createdAt,
+  className = 'w-2/3',
 }: IProps) {
   const { params } = useMatch();
 
@@ -24,11 +26,12 @@ function War({
   return (
     <div
       className={clsx(
-        'stats grid w-2/3 shadow transition-colors lg:grid-cols-3',
+        'stats grid shadow transition-colors lg:grid-cols-3',
         {
           'bg-success hover:bg-success/70': won,
           'bg-warning hover:bg-warning/70': !won,
         },
+        className,
       )}
     >
       <div className="stat">

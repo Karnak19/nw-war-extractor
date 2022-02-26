@@ -29,6 +29,7 @@ function CompanyWars({}: {}) {
 
   const tab = (activate: Active) => (
     <button
+      key={activate}
       className={clsx('tab tab-bordered tab-lg transition-colors', {
         'tab-active': active === activate,
       })}
@@ -50,6 +51,7 @@ function CompanyWars({}: {}) {
       {data?.companyWars.filter(isAttack).map((war) => {
         return (
           <div
+            key={war.id}
             className="flex cursor-pointer justify-center"
             onClick={() => navigate({ to: war.id })}
           >

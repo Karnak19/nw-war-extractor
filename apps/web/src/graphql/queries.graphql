@@ -10,12 +10,31 @@ query Company($id: ID!) {
     name
     characters {
       id
+      pseudo
     }
-    attacks {
+  }
+  companyWars(id: $id) {
+    id
+    createdAt
+    attacker {
+      id
+      name
+    }
+    defender {
+      id
+      name
+    }
+    winner {
       id
     }
-    defenses {
-      id
+    scores {
+      damage
+      healing
+      character {
+        company {
+          id
+        }
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import Fuse from 'fuse.js';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-location';
+import Spinner from '../components/Spinner';
 import { client, useCompaniesQuery } from '../graphql';
 
 function Companies() {
@@ -19,7 +20,7 @@ function Companies() {
   const fuzzyResults = fuse.search(search).map(({ item: comp }) => {
     return (
       <Link
-        className="btn-outline btn btn-primary glass btn-block"
+        className="btn-outline btn btn-primary btn-block"
         to={comp.id}
         key={comp.id}
       >
@@ -31,7 +32,7 @@ function Companies() {
   const results = data?.companies.map((comp) => {
     return (
       <Link
-        className="btn-outline btn btn-primary glass btn-block"
+        className="btn-outline btn btn-primary btn-block"
         to={comp.id}
         key={comp.id}
       >
@@ -39,7 +40,7 @@ function Companies() {
       </Link>
     );
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
 
   if (error) return <p>Error</p>;
 

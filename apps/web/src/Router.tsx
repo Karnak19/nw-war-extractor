@@ -13,6 +13,7 @@ import CompanyMembers from './pages/CompanyMembers';
 import CompanyWarDetails from './pages/CompanyWarDetails';
 import CompanyWars from './pages/CompanyWars';
 import Home from './pages/Home';
+import WarUpload from './pages/WarUpload';
 
 const location = new ReactLocation();
 
@@ -40,7 +41,10 @@ export const routes: Route[] = [
             children: [
               {
                 path: '/',
-                element: <CompanyMembers />,
+                element: () =>
+                  import('./pages/CompanyMembers').then((res) => (
+                    <res.default />
+                  )),
               },
               {
                 path: ':id',
@@ -53,7 +57,12 @@ export const routes: Route[] = [
             children: [
               {
                 path: '/',
-                element: <CompanyWars />,
+                element: () =>
+                  import('./pages/CompanyWars').then((res) => <res.default />),
+              },
+              {
+                path: 'new',
+                element: <WarUpload />,
               },
               {
                 path: ':id',

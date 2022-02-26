@@ -1,4 +1,5 @@
 import { Link, useMatch } from 'react-location';
+import Spinner from '../components/Spinner';
 import { client, useCompanyMembersQuery } from '../graphql';
 
 function CompanyMembers({}: {}) {
@@ -7,7 +8,8 @@ function CompanyMembers({}: {}) {
     id: params.id,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
+
   if (error) return <div>Error!</div>;
 
   return (
@@ -22,7 +24,7 @@ function CompanyMembers({}: {}) {
             <Link
               to={`${character.id}`}
               key={character.id}
-              className="btn btn-primary btn-block btn-sm text-2xl font-bold dark:btn-outline dark:glass"
+              className="btn btn-primary btn-block btn-sm text-2xl font-bold dark:btn-outline"
             >
               {character.pseudo}
             </Link>
