@@ -26,10 +26,10 @@ function WarStat({
     <div
       onClick={() => navigate({ to: `../../wars/${war.id}` })}
       className={clsx(
-        'stats grid w-full cursor-pointer shadow transition-colors lg:grid-cols-6',
+        'stats grid w-full cursor-pointer shadow transition-colors lg:grid-cols-7',
         {
           'bg-success hover:bg-success/70': won,
-          'bg-warning hover:bg-warning/70': !won,
+          'bg-error hover:bg-error/70': !won,
         },
       )}
     >
@@ -46,6 +46,11 @@ function WarStat({
             new Date(Number(createdAt)),
           )}
         </div>
+      </div>
+
+      <div className="stat">
+        <div className="stat-title">result:</div>
+        <div className="stat-value">{won ? 'WIN' : 'LOSE'}</div>
       </div>
 
       <div className="stat">

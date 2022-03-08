@@ -1543,6 +1543,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@magic-ext/oauth@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@magic-ext/oauth/-/oauth-2.1.0.tgz#17a53fcffa590ba3dde6373fa98a3132d15177f5"
+  integrity sha512-f/BpCNl9WFhUWZ/lRhXFpRrUa1gbPmYeuCF77FSuzeRY7NcR8cU0BptetQE356PWh5kbWSXvgGD3Z+MlDD6umQ==
+  dependencies:
+    "@magic-sdk/types" "^7.1.0"
+
 "@magic-sdk/admin@^0.1.0-beta.8":
   version "0.1.0-beta.10"
   resolved "https://registry.yarnpkg.com/@magic-sdk/admin/-/admin-0.1.0-beta.10.tgz#06986660303721cd69933193098152ddea424f05"
@@ -1581,6 +1588,11 @@
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@magic-sdk/types/-/types-7.0.0.tgz#043fee3b1a986ff9c78b2f26bc1d668a8e368e59"
   integrity sha512-yD2t8VETFuyiNBn+97oxQv44Yrlj3VB+jAUlHzhmMgt/5Nrt79Wsz3Uqyy4xQqh2rm0ClG+m2lx4J3zdMGT9Ug==
+
+"@magic-sdk/types@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@magic-sdk/types/-/types-7.1.0.tgz#d8f796f65d9d2b31d51bed77a22bc90d6d8e6e24"
+  integrity sha512-jnolK5IpTtW/xgo17Fgl8c/L/C9xPyHkwLJSkWZQFXe3P888O0nWbEnfM7wap3GI5zmGPqdJnQ49AkA2TvrbqA==
 
 "@n1ru4l/graphql-live-query@^0.9.0":
   version "0.9.0"

@@ -9,6 +9,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { CharactersModule } from './characters/characters.module';
 import { ScoresModule } from './scores/scores.module';
 import { WarModule } from './war/war.module';
+import { MagicModule } from './magic/magic.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { WarModule } from './war/war.module';
     CharactersModule,
     ScoresModule,
     WarModule,
+    MagicModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

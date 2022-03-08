@@ -29,7 +29,7 @@ function War({
         'stats grid shadow transition-colors lg:grid-cols-3',
         {
           'bg-success hover:bg-success/70': won,
-          'bg-warning hover:bg-warning/70': !won,
+          'bg-error hover:bg-error/70': !won,
         },
         className,
       )}

@@ -1,3 +1,5 @@
+import { Link } from 'react-location';
+
 function Home() {
   return (
     <div className="hero">
@@ -9,7 +11,9 @@ function Home() {
             alt="logo"
           />
           <p className="py-6">WAR EXTRACTOR</p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to="/companies" className="btn btn-primary">
+            Get Started
+          </Link>
         </div>
       </div>
     </div>

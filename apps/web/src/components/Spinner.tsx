@@ -1,9 +1,10 @@
 import './Spinner.css';
 
-function Spinner() {
+function Spinner({ additionalText }: { additionalText?: string }) {
   return (
-    <div className="grid w-full place-items-center py-20">
+    <div className="grid w-full place-items-center gap-4 py-20">
       <div className="spinner" />
+      {additionalText && <p>{additionalText}</p>}
     </div>
   );
 }

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
+    "@magic-ext/oauth": "^2.1.0",
     "clsx": "^1.1.1",
     "daisyui": "^2.0.9",
     "fuse.js": "^6.5.3",

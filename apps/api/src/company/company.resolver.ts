@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import {
   Resolver,
   Query,
@@ -7,6 +8,7 @@ import {
   Parent,
 } from '@nestjs/graphql';
 import { Company } from '@prisma/client';
+import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { CompanyService } from './company.service';
 
 @Resolver('Company')
@@ -19,16 +21,19 @@ export class CompanyResolver {
   }
 
   @Query()
+  @UseGuards(GqlAuthGuard)
   async company(@Args('id') id: string) {
     return this.companyService.getOne({ id });
   }
 
   @Query()
+  @UseGuards(GqlAuthGuard)
   async companyWars(@Args('id') id: string) {
     return this.companyService.getWars(id);
   }
 
   @Mutation()
+  @UseGuards(GqlAuthGuard)
   async createCompany(@Args('name') name: string) {
     return this.companyService.create({ name });
   }
